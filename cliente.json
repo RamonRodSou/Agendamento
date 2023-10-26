@@ -1,0 +1,12 @@
+{
+  "cliente": [
+    {
+      "nome": "Antonio Rodrigues",
+      "sobrenome": "de Souza",
+      "telefone": "+5521972923210",
+      "data": "2023-10-22",
+      "hora": "10:20",
+      "id": 1
+    }
+  ]
+}
