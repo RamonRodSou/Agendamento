@@ -23,11 +23,13 @@
     "luxon": "^3.4.3",
     "moment": "^2.29.4",
     "react": "^16.13.1",
+    "react-calendar": "^4.6.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.17.0",
     "react-scripts": "^3.4.4",
     "stack": "^0.1.0",
     "styled-components": "^6.1.0",
+    "telegraf": "^4.15.0",
     "tooltip": "^1.6.1"
   },
   "scripts": {

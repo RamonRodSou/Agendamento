@@ -9,7 +9,7 @@ function DadosPessoais({ aoEnviar }) {
   const [telefone, setTelefone] = useState("");
   const validacoes = useContext(ValidacoesCadastro)
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
-
+  
   return (
     <form
       onSubmit={(event) => {
@@ -24,9 +24,10 @@ function DadosPessoais({ aoEnviar }) {
         onChange={(event) => {
           setNome(event.target.value);
         }}
-        onBlur={validarCampos}
-        error={!erros.nome.valido}
-        helperText={erros.nome.texto}
+        
+        // onBlur={validarCampos}
+        // error={!erros.nome.valido}
+        // helperText={erros.nome.texto}
         id="nome"
         label="Nome"
         name="nome"
@@ -39,6 +40,9 @@ function DadosPessoais({ aoEnviar }) {
         onChange={(event) => {
           setSobrenome(event.target.value);
         }}
+        // onBlur={validarCampos}
+        // error={!erros.sobrenome.valido}
+        // helperText={erros.sobrenome.texto}
         id="sobrenome"
         name="sobrenome"
         label="Sobrenome"
@@ -51,12 +55,13 @@ function DadosPessoais({ aoEnviar }) {
         onChange={(event) => {
           setTelefone(event.target.value);
         }}
-        onBlur={validarCampos}
-        error={!erros.telefone.valido}
-        helperText={erros.telefone.texto}
+        // onBlur={validarCampos}
+        // error={!erros.telefone.valido}
+        type="tel"
+        autoComplete="mobile"
         id="telefone"
         name="telefone"
-        label="Telefone: (21) 97000-3000"
+        label="Telefone: 21970003000"
         variant="outlined"
         margin="normal"
         fullWidth

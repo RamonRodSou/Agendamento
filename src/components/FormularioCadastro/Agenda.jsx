@@ -1,106 +1,137 @@
-import * as React from 'react';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import Stack from 'stack';
-import { Button, Tooltip, styled } from '@material-ui/core';
-import { useState } from 'react';
-
-const ProSpan = styled('span')({
-  display: 'inline-block',
-  height: '1em',
-  width: '1em',
-  verticalAlign: 'middle',
-  marginLeft: '0.3em',
-  marginBottom: '0.08em',
-  backgroundSize: 'contain',
-  backgroundRepeat: 'no-repeat',
-  backgroundImage: 'url(https://mui.com/static/x/pro.svg)',
-});
+import React, { useContext, useState } from "react";
+import { TextField, Button, Select, MenuItem } from "@material-ui/core";
+import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
+import ValidacoesCadastro from "../../contexts/ValidacoesCadastro"
+import useErros from "../../models/hooks/useErros";
 
 
-
-
-function Label({ componentName, valueType, isProOnly }) {
-
+function Agenda({ aoEnviar }) {
+  // const [data, setData] = useState(new Date());
+  // const [hora, setHora] = useState("");
   
-  const content = (
-    <span>
-      <strong>{componentName}</strong> for {valueType} editing
-    </span>
-  );
+  // return (
+  //   <form
+  //   onSubmit={(event) => {
+  //     event.preventDefault();
+  //     // if (possoEnviar()) {
+  //       aoEnviar({ data, hora });
+  //     // }
+  //   }}>
+    
+     {/* <TextField
+        value={data}
+        onChange={(event) => {
+          setData(event.target.value);
+        }}
+        // onBlur={validarCampos}
+        // error={!erros.data.valido}
+        // helperText={erros.data.texto}
+        id="data"
+        name="data"
+        label=""
+        type="date"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />  */}
 
-  if (isProOnly) {
+    //  <TextField
+    //     value={hora}
+    //     onChange={(event) => {
+    //       setHora(event.target.value);
+    //     }}
+    //     // onBlur={validarCampos}
+    //     // error={!erros.hora.valido}
+    //     // helperText={erros.hora.texto}
+    //     id="hora"
+    //     name="hora"
+    //     label=""
+    //     type="time"
+    //     variant="outlined"
+    //     margin="normal"
+    //     fullWidth
+    //   /> 
+
+
+    
+    const [data, setData] = useState(new Date());
+    const [hora, setHora] = useState("");
+    const [selectedHours, setSelectedHours] = useState([]);
+    const validacoes = useContext(ValidacoesCadastro)
+    const [erros, validarCampos, possoEnviar] = useErros(validacoes);
+    
+    const saoPauloTimezoneOffset = -2 * 60; // São Paulo's timezone offset in minutes
+    const currentDateTime = new Date();
+    currentDateTime.setMinutes(currentDateTime.getMinutes() + saoPauloTimezoneOffset);
+  
+    const availableHours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"]; // Define your available hours here
+  
+    const handleDateChange = (date) => {
+      const selectedDate = new Date(date);
+      // selectedDate.setMinutes(selectedDate.getMinutes() + saoPauloTimezoneOffset);
+  
+      if (selectedDate >= currentDateTime) {
+        setData(selectedDate);
+      }
+    };
+  
+    const handleTimeChange = (event) => {
+      const selectedTime = event.target.value;
+      if (availableHours.includes(selectedTime) && !selectedHours.includes(selectedTime)) {
+        setHora(selectedTime);
+        setSelectedHours([...selectedHours, selectedTime]);
+      }
+      
+    };
+  
     return (
-      <Stack direction="row" spacing={0.5} component="span">
-        <Tooltip title="Included on Pro package">
-          <a href="https://mui.com/x/introduction/licensing/#pro-plan">
-            <ProSpan />
-          </a>
-        </Tooltip>
-        {content}
-      </Stack>
-    );
-  }
-
-  return content;
-}
-
-export default function Agenda(aoEnviar) {
-
-  const [data, setData] = useState("");
-  const [hora, setHora] = useState("");
-  return (
-    <LocalizationProvider 
-    onSubmit={(event) => {
-      event.preventDefault();
-      // if (possoEnviar()) {
-        aoEnviar({ data, hora });
-      // }
-    }}
-      dateAdapter={AdapterDayjs}>
-      <DemoContainer
-        components={[
-          'DatePicker',
-          'TimePicker',
-          'DateTimePicker',
-          'DateRangePicker',
-        ]}
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (possoEnviar()) {
+          aoEnviar({ data, hora });
+        }}}
       >
-        <DemoItem
-            value={data}
-            onChange={(event) => {
-              setData(event);
-            }}
-          label={
-            <Label 
-              componentName="Data do Agendamento" v
-              alueType="date" 
+        <div style={{width:'100%', margin:'1rem 0'}}>
+            <Calendar
+              value={data}
+              onChange={handleDateChange}
+              minDate={currentDateTime}
+              // onBlur={validarCampos}
+              // error={!erros.data.valido}
+              // helperText={erros.data.texto}
             />
-          }
-        >
-          <DatePicker />
-        </DemoItem>
-        <DemoItem 
+        </div>
+    
+        <Select 
           value={hora}
-          onChange={(event) => {
-            setHora(event);
-          }}
-          label={
-            <Label 
-              componentName="Horas do Agendamento" 
-              valueType="time" 
-            />
-          }
+          onChange={handleTimeChange}
+          id="hora"
+          name="hora"
+          label="Hora"
+          // onBlur={validarCampos}
+          // error={!erros.hora.valido}
+          // helperText={erros.hora.texto}
+          fullWidth
+          style={{margin: '2rem 0', border:'1px solid #3f51b5'}}
         >
-          <TimePicker />
-        </DemoItem>
-      </DemoContainer>
-      <Button type="submit" variant="contained" color="primary" fullWidth>
-        Finalizar Cadastro
-      </Button>
-    </LocalizationProvider>
+          {availableHours.map((hora) => (
+            <MenuItem           label="Hora"
+                key={hora} value={hora} disabled={selectedHours.includes(hora)}>
+              {hora}
+            </MenuItem>
+          ))}
+        </Select>
+    
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Finalizar Cadastro
+          </Button>
+        </form>
   );
 }
+
+export default Agenda;
+
+
+
