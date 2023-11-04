@@ -26,20 +26,20 @@ const StyledContainer = styled(Container)`
     justify-content: center;
     align-items: center;
 
-
     @media (max-width: 768px) {
       background-color: #f0f0f0;
       padding: 2rem;
+      gap:1rem;
       width:80%
-
     }
   }
+
 `;
 
 const StyledBox = styled(Box)`
   && {
 
-
+    
     @media (max-width: 656px) {
 
         display:flex;
@@ -47,6 +47,7 @@ const StyledBox = styled(Box)`
         align-items: center;
         gap:0.5rem;
         margin-bottom: 1.5rem;
+        
     }
 
     @media (max-width: 400px) {

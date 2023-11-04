@@ -19,8 +19,8 @@ useEffect(()=> {
 })
 
 const formularios = [ 
-  <DadosContratante aoEnviar={coletarDados} />,
-  <DadosPessoas aoEnviar={coletarDados} />,
+  // <DadosContratante aoEnviar={coletarDados} />,
+  // <DadosPessoas aoEnviar={coletarDados} />,
   <Corte aoEnviar={coletarDados}/>,
   <Agenda aoEnviar={coletarDados}/>,
   <Typography variant="h5">Obrigado pela preferência!</Typography>
@@ -40,15 +40,15 @@ function proximo () {
 const ContainerDiv = styled.div`
 && {
 }
+  display:flex;
+  flex-direction: column;
 
-@media (max-width: 768px) {
+@media ( max-width: 768px) {
   && {
     width: 100%;
-    gap:1rem;
-    margin: 1rem 0:
-
+    gap:2rem;
  }  
-}
+ }
 `;
 
 
@@ -74,10 +74,18 @@ const StyledStepper = styled(Stepper)`
 
  @media (max-width: 470px) {
   && {
-    flex-direction: column;
-    justify-content:flex-start;
     width:100%
 
+ } 
+}
+`;
+
+const StyledStep= styled(Step)`
+&& {
+
+ @media (max-width: 5500px) {
+  && {
+    width:100%
  } 
 }
 `;
@@ -85,15 +93,8 @@ const StyledStepper = styled(Stepper)`
 const StyledStepLabel= styled(StepLabel)`
 && {
 
-
-@media (max-width: 768px) {
-  && {
-
- }  
-
  @media (max-width: 440px) {
   && {
-
     gap:0.2rem;
 
  } 
@@ -102,11 +103,11 @@ const StyledStepLabel= styled(StepLabel)`
 
     return <ContainerDiv>
       <StyledStepper activeStep={etapaAtual} >
-        <Step><StyledStepLabel>Contratante</StyledStepLabel></Step>
-        <Step><StyledStepLabel>Pessoal</StyledStepLabel></Step>
-        <Step><StyledStepLabel>Corte</StyledStepLabel></Step>
-        <Step><StyledStepLabel>Agenda</StyledStepLabel></Step>
-        <Step><StyledStepLabel>Finalizacao</StyledStepLabel></Step>
+        {/* <StyledStep><StyledStepLabel>Contratante</StyledStepLabel></StyledStep>
+        <StyledStep><StyledStepLabel>Pessoal</StyledStepLabel></StyledStep> */}
+        <StyledStep><StyledStepLabel>Corte</StyledStepLabel></StyledStep>
+        <StyledStep><StyledStepLabel>Agenda</StyledStepLabel></StyledStep>
+        <StyledStep><StyledStepLabel>Finalizacao</StyledStepLabel></StyledStep>
       </StyledStepper>
     {formularios[etapaAtual]} </ContainerDiv>
 }
