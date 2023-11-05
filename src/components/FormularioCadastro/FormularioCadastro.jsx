@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import DadosContratante from "./DadosContratante";
+import DadosProfissional from "./DadosProfissional";
 import DadosPessoas from "./DadosPessoas";
-import Corte from "./Corte";
+import ServicoEscolha from "./ServicoEscolha";
 import Agenda from "./Agenda";
 import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
 import styled from "styled-components";
@@ -18,9 +18,9 @@ useEffect(()=> {
 })
 
 const formularios = [ 
-  <DadosContratante aoEnviar={coletarDados} />,
+  <DadosProfissional aoEnviar={coletarDados} />,
   <DadosPessoas aoEnviar={coletarDados} />,
-  <Corte aoEnviar={coletarDados}/>,
+  <ServicoEscolha aoEnviar={coletarDados}/>,
   <Agenda aoEnviar={coletarDados}/>,
   <Typography variant="h5" style={{textAlign:'center', margin:'2rem 0'}}>Obrigado pela preferência!</Typography>
 
@@ -41,6 +41,7 @@ const ContainerDiv = styled.div`
 }
   display:flex;
   flex-direction: column;
+
 
 @media ( max-width: 768px) {
   && {
@@ -98,11 +99,11 @@ const StyledStepLabel= styled(StepLabel)`
 
     return <ContainerDiv>
       <StyledStepper activeStep={etapaAtual} >
-        <StyledStep><StyledStepLabel>Contratante</StyledStepLabel></StyledStep>
-        <StyledStep><StyledStepLabel>Pessoal</StyledStepLabel></StyledStep>
-        <StyledStep><StyledStepLabel>Corte</StyledStepLabel></StyledStep>
+        <StyledStep><StyledStepLabel>Profissional</StyledStepLabel></StyledStep>
+        <StyledStep><StyledStepLabel>Pessoal</StyledStepLabel></StyledStep> 
+        <StyledStep><StyledStepLabel>Serviço</StyledStepLabel></StyledStep> 
         <StyledStep><StyledStepLabel>Agenda</StyledStepLabel></StyledStep>
-        <StyledStep><StyledStepLabel>Finalizacao</StyledStepLabel></StyledStep>
+        <StyledStep><StyledStepLabel>Finalizacão</StyledStepLabel></StyledStep>
       </StyledStepper>
     {formularios[etapaAtual]} </ContainerDiv>
 }

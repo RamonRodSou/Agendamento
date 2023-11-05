@@ -30,7 +30,10 @@ const StyledContainer = styled(Container)`
       background-color: #f0f0f0;
       padding: 2rem;
       gap:1rem;
-      width:80%
+      width:80%;
+      margin-bottom: 2rem;
+
+      
     }
   }
 

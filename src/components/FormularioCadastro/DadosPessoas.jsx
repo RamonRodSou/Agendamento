@@ -11,7 +11,7 @@ function DadosPessoais({ aoEnviar }) {
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
   
   return (
-    <form
+    <form style={{display:'flex', flexDirection:'column', gap:''}}
       onSubmit={(event) => {
         event.preventDefault();
         if (possoEnviar()) {
@@ -67,7 +67,7 @@ function DadosPessoais({ aoEnviar }) {
         fullWidth
       />
 
-      <Button type="submit" variant="contained" color="primary">
+      <Button type="submit" variant="contained" color="primary" style={{margin:'1.5rem 0'}}>
         Próximo
       </Button>
     </form>

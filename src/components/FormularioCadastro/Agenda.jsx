@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { TextField, Button, Select, MenuItem } from "@material-ui/core";
+import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro"
@@ -72,7 +72,7 @@ function Agenda({ aoEnviar }) {
       // selectedDate.setMinutes(selectedDate.getMinutes() + saoPauloTimezoneOffset);
   
       if (selectedDate >= currentDateTime) {
-        setData(selectedDate);
+      setData(selectedDate);
       }
     };
   
@@ -104,27 +104,32 @@ function Agenda({ aoEnviar }) {
             />
         </div>
     
-        <Select 
-          value={hora}
-          onChange={handleTimeChange}
-          id="hora"
-          name="hora"
-          label="Hora"
-          // onBlur={validarCampos}
-          // error={!erros.hora.valido}
-          // helperText={erros.hora.texto}
-          fullWidth
-          style={{margin: '2rem 0', border:'1px solid #3f51b5'}}
-        >
-          {availableHours.map((hora) => (
-            <MenuItem           label="Hora"
-                key={hora} value={hora} disabled={selectedHours.includes(hora)}>
-              {hora}
-            </MenuItem>
-          ))}
-        </Select>
-    
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <FormControl fullWidth>
+              <InputLabel style={{  margin: '0 0.5rem'}}>Hora</InputLabel>
+              <Select
+              value={hora}
+              onChange={handleTimeChange}
+              id="hora"
+              name="hora"
+              label="Hora"
+
+              // onBlur={validarCampos}
+              // error={!erros.hora.valido}
+              // helperText={erros.hora.texto}
+              
+              style={{ border:'1px solid #3f51b5',  padding:'0 1rem'}}
+            >
+              {availableHours.map((hora) => (
+                <MenuItem label="Hora"
+                    key={hora} value={hora} disabled={selectedHours.includes(hora)}
+                    style={{  margin:'0 1rem'}}>
+                  {hora}
+                </MenuItem>
+              ))}
+            </Select>
+        
+          </FormControl>
+          <Button type="submit" variant="contained" color="primary" fullWidth style={{margin:'1.5rem 0'}}>
             Finalizar Cadastro
           </Button>
         </form>
