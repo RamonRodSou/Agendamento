@@ -3,17 +3,10 @@ import { Box, Button, Checkbox, Slider } from "@material-ui/core";
 // import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 // import useErros from "../../models/hooks/useErros";
 import cabelo1 from './img/Cabelo.webp'
-import cabelo2 from './img/Cabelo2.webp'
-import cabelo3 from './img/Cabelo3.webp'
-
 import apbBarba from './img/ApBarba.webp'
-import apbBarba2 from './img/ApBarba2.webp'
-import apbBarba3 from './img/ApBarba3.webp'
-
-
-import fazBarba from './img/FazBarba.webp'
-import fazBarba2 from './img/FazBarba2.webp'
-import fazBarba3 from './img/FazBarba3.webp'
+import fazBarba from './img/FazBarba3.webp'
+import Servico from "../Servico/Servico";
+import styled from "styled-components";
 
 
 function Corte({ aoEnviar }) {
@@ -26,6 +19,21 @@ function Corte({ aoEnviar }) {
 // const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
 
+const BoxServico = styled(Box)`
+&& {
+  display: flex;
+  gap:1rem;
+  justify-content:center;
+}
+
+@media (max-width: 700px) {
+  && {
+    flex-direction: column;
+
+ }  
+}
+`;
+
 
   return (
     <form style={{ width:'100%', display:'flex', flexDirection:'column', gap:'2rem'}}
@@ -36,9 +44,27 @@ function Corte({ aoEnviar }) {
         // }
       }}
     >
+      <BoxServico>
+          <Servico
+            nome='Corte'
+            foto={cabelo1}
+            servico={cabelo}
+            set={setCabelo}
+          />
+          <Servico
+            nome='Desenhar'
+            foto={apbBarba}
+            servico={barba}
+            set={setBarba}
+          />
+          <Servico
+            nome='Barba'
+            foto={fazBarba}
+            servico={desenhar}
+            set={setDesenhar}
+         /> 
+      </BoxServico>
 
-
-      
 
       <Box sx={{display:'flex', justifyContent:'space-between', margin:'1rem 0', width:'100%'}}>
         <Button type="submit" variant="contained" color="primary">

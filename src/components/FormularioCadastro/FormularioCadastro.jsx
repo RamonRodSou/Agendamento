@@ -7,7 +7,6 @@ import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
 import styled from "styled-components";
 
 
-
 function FormularioCadastro({aoEnviar, validacoes}) {
 const [etapaAtual, setEtapaAtual] = useState(0)
 const [dadosColetados, setDados] = useState({})
@@ -19,11 +18,11 @@ useEffect(()=> {
 })
 
 const formularios = [ 
-  // <DadosContratante aoEnviar={coletarDados} />,
-  // <DadosPessoas aoEnviar={coletarDados} />,
+  <DadosContratante aoEnviar={coletarDados} />,
+  <DadosPessoas aoEnviar={coletarDados} />,
   <Corte aoEnviar={coletarDados}/>,
   <Agenda aoEnviar={coletarDados}/>,
-  <Typography variant="h5">Obrigado pela preferência!</Typography>
+  <Typography variant="h5" style={{textAlign:'center', margin:'2rem 0'}}>Obrigado pela preferência!</Typography>
 
 ]
 
@@ -51,8 +50,6 @@ const ContainerDiv = styled.div`
  }
 `;
 
-
-
 const StyledStepper = styled(Stepper)`
 && {
   background-color: #ffffff10;
@@ -68,9 +65,7 @@ const StyledStepper = styled(Stepper)`
     gap:1rem;
     justify-content:flex-start;
     align-items: center;
-
  }  
-
 
  @media (max-width: 470px) {
   && {
@@ -103,8 +98,8 @@ const StyledStepLabel= styled(StepLabel)`
 
     return <ContainerDiv>
       <StyledStepper activeStep={etapaAtual} >
-        {/* <StyledStep><StyledStepLabel>Contratante</StyledStepLabel></StyledStep>
-        <StyledStep><StyledStepLabel>Pessoal</StyledStepLabel></StyledStep> */}
+        <StyledStep><StyledStepLabel>Contratante</StyledStepLabel></StyledStep>
+        <StyledStep><StyledStepLabel>Pessoal</StyledStepLabel></StyledStep>
         <StyledStep><StyledStepLabel>Corte</StyledStepLabel></StyledStep>
         <StyledStep><StyledStepLabel>Agenda</StyledStepLabel></StyledStep>
         <StyledStep><StyledStepLabel>Finalizacao</StyledStepLabel></StyledStep>
