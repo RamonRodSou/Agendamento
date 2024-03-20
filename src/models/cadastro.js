@@ -16,7 +16,7 @@
   }
 
   function validarTelefone(telefone){
-    if(telefone.length == 10){
+    if(telefone.length === 10){
       return {valido:false, texto:"numero de telefone deve conter 10 digitos."}
     }else{
       return {valido:true, texto:""}

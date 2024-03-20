@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import FormularioCadastro from "./components/FormularioCadastro/FormularioCadastro";
 import 'fontsource-roboto';
-import {Box, Container, Typography } from "@material-ui/core"
+import { Box, Container, Typography } from "@material-ui/core"
 import { validarNome, validarTelefone } from "./models/cadastro";
 import ValidacoesCadastro from "./contexts/ValidacoesCadastro";
 import AoEnviarForm from "./contexts/AoEnviarForm";
@@ -32,7 +32,6 @@ const StyledContainer = styled(Container)`
       gap:1rem;
       width:80%;
       margin-bottom: 2rem;
-
       
     }
   }
@@ -62,37 +61,36 @@ const StyledBox = styled(Box)`
 
 const StyledTypography = styled(Typography)`
   && {
-
     flexGrow:'0.5';
 
     @media (max-width: 470px) {
-
       font-size:2.5rem;
   }
     @media (max-width: 400px) {
-
       font-size:2rem;
   }
   }
 `;
 
+
+
 class App extends Component {
   render() {
     return (
-      <StyledContainer component="article" maxWidth="sm"      >
-        <StyledBox sx={{display:'flex',alignItems:'center'}}>
-          <LogoSt                            
-              src={LogoImg} 
-              alt={LogoImg}
-            />
-            <StyledTypography  variant="h3" component="h1" align="center">Agendamento</StyledTypography>
+      <StyledContainer component="article" maxWidth="sm">
+        <StyledBox sx={{ display: 'flex', alignItems: 'center' }}>
+          <LogoSt
+            src={LogoImg}
+            alt={LogoImg}
+          />
+          <StyledTypography variant="h3" component="h1" align="center">Agendamento</StyledTypography>
         </StyledBox>
-        <ValidacoesCadastro.Provider 
+        <ValidacoesCadastro.Provider
           value={{
-              nome: validarNome,
-              telefone: validarTelefone 
-              }}>
-        <FormularioCadastro aoEnviar={AoEnviarForm} />
+            nome: validarNome,
+            telefone: validarTelefone
+          }}>
+          <FormularioCadastro aoEnviar={AoEnviarForm} />
         </ValidacoesCadastro.Provider>
       </StyledContainer>
     );

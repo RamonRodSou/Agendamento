@@ -1,0 +1,44 @@
+{
+
+  "profissional": [
+    {
+      "nome": "Profissiona1",
+      "sobrenome": "Barbeiro",
+      "profissional": "Mestre dos Cortes",
+      "telefone": "21987654321",
+      "id": 1
+    },
+    {
+      "nome": "Profissiona2",
+      "sobrenome": "Barbeiro",
+      "profissional": "Cortes na Regua",
+      "telefone": "21900000000",
+      "id": 2
+    }
+  ],
+
+  "cliente": [
+    {
+      "nome": "Cliente1",
+      "sobrenome": "Cliente",
+      "telefone": "+5521900000000",
+      "corte": true,
+      "barba": "",
+      "desenhar": "",
+      "data": "2023-10-27",
+      "hora": "10:20",
+      "id": 1
+    },
+    {
+      "nome": "Cliente2",
+      "sobrenome": "Cliente",
+      "telefone": "+5521900000000",
+      "cabelo": true,
+      "barba": true,
+      "desenhar": "",
+      "data": "2121-02-22",
+      "hora": "22:22",
+      "id": 2
+    }
+  ]
+}

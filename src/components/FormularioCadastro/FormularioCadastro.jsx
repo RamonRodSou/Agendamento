@@ -7,36 +7,37 @@ import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
 import styled from "styled-components";
 
 
-function FormularioCadastro({aoEnviar, validacoes}) {
-const [etapaAtual, setEtapaAtual] = useState(0)
-const [dadosColetados, setDados] = useState({})
+function FormularioCadastro({ aoEnviar, validacoes }) {
+  const [etapaAtual, setEtapaAtual] = useState(0)
+  const [dadosColetados, setDados] = useState({})
 
-useEffect(()=> {
-  if (etapaAtual === formularios.length-1){
-    aoEnviar(dadosColetados)
+  useEffect(() => {
+    if (etapaAtual === formularios.length - 1) {
+      aoEnviar(dadosColetados)
+    }
+  })
+
+  const formularios = [
+    <DadosProfissional aoEnviar={coletarDados} />,
+    <DadosPessoas aoEnviar={coletarDados} />,
+    <ServicoEscolha aoEnviar={coletarDados} />,
+    <Agenda aoEnviar={coletarDados} />,
+    <Typography variant="h5" style={{ textAlign: 'center', margin: '2rem 0' }}>Obrigado pela preferência!</Typography>
+
+  ]
+
+  function coletarDados(dados) {
+    setDados({ ...dadosColetados, ...dados })
+    proximo()
   }
-})
-
-const formularios = [ 
-  <DadosProfissional aoEnviar={coletarDados} />,
-  <DadosPessoas aoEnviar={coletarDados} />,
-  <ServicoEscolha aoEnviar={coletarDados}/>,
-  <Agenda aoEnviar={coletarDados}/>,
-  <Typography variant="h5" style={{textAlign:'center', margin:'2rem 0'}}>Obrigado pela preferência!</Typography>
-
-]
-
-function coletarDados (dados){
-  setDados({...dadosColetados, ...dados})
-  proximo()
-}
 
 
-function proximo () {
-  setEtapaAtual(etapaAtual + 1)
-}
+  function proximo() {
+    setEtapaAtual(etapaAtual + 1)
+  }
 
-const ContainerDiv = styled.div`
+
+  const ContainerDiv = styled.div`
 && {
 }
   display:flex;
@@ -51,7 +52,7 @@ const ContainerDiv = styled.div`
  }
 `;
 
-const StyledStepper = styled(Stepper)`
+  const StyledStepper = styled(Stepper)`
 && {
   background-color: #ffffff10;
   display: flex;
@@ -76,7 +77,7 @@ const StyledStepper = styled(Stepper)`
 }
 `;
 
-const StyledStep= styled(Step)`
+  const StyledStep = styled(Step)`
 && {
 
  @media (max-width: 5500px) {
@@ -86,7 +87,7 @@ const StyledStep= styled(Step)`
 }
 `;
 
-const StyledStepLabel= styled(StepLabel)`
+  const StyledStepLabel = styled(StepLabel)`
 && {
 
  @media (max-width: 440px) {
@@ -97,14 +98,14 @@ const StyledStepLabel= styled(StepLabel)`
 }
 `;
 
-    return <ContainerDiv>
-      <StyledStepper activeStep={etapaAtual} >
-        <StyledStep><StyledStepLabel>Profissional</StyledStepLabel></StyledStep>
-        <StyledStep><StyledStepLabel>Pessoal</StyledStepLabel></StyledStep> 
-        <StyledStep><StyledStepLabel>Serviço</StyledStepLabel></StyledStep> 
-        <StyledStep><StyledStepLabel>Agenda</StyledStepLabel></StyledStep>
-        <StyledStep><StyledStepLabel>Finalizacão</StyledStepLabel></StyledStep>
-      </StyledStepper>
+  return <ContainerDiv>
+    <StyledStepper activeStep={etapaAtual} >
+      <StyledStep><StyledStepLabel>Profissional</StyledStepLabel></StyledStep>
+      <StyledStep><StyledStepLabel>Pessoal</StyledStepLabel></StyledStep>
+      <StyledStep><StyledStepLabel>Serviço</StyledStepLabel></StyledStep>
+      <StyledStep><StyledStepLabel>Agenda</StyledStepLabel></StyledStep>
+      <StyledStep><StyledStepLabel>Finalizacão</StyledStepLabel></StyledStep>
+    </StyledStepper>
     {formularios[etapaAtual]} </ContainerDiv>
 }
 

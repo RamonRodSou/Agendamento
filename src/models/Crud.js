@@ -1,9 +1,7 @@
 import axios from "axios";
 
-
-function PostCrud (url) {
-
-axios.post(url)
+async function PostCrud (url) {
+await axios.post(url)
 .then(response => {
   console.log('Mensagem enviada com sucesso para o Telegram');
 })
@@ -12,7 +10,18 @@ axios.post(url)
 });
 }
 
+async function GetCrud (url) {
+  await axios.get(url)
+  .then(response => {
+    console.log('Dados Coletado'); 
+  })
+  .catch(error => {
+    console.error('Erro ao coletar dados', error);
+  });
+  }
+
 export {
 
-    PostCrud
+    PostCrud,
+    GetCrud
 }
